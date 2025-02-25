@@ -1,0 +1,2 @@
+## we create a .gitignore file because wse dont want to deploy our venv to deployment server
+venv/
