@@ -3,5 +3,6 @@ flask
 numpy
 scikit-learn
 seaborn
+pickle
 
 # -e .
