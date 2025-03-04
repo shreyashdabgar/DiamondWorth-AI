@@ -1,9 +1,11 @@
 import os 
 import sys 
 import pandas as pd
-from src.exception import coustemexception # custom exception created in exception.py
+
+from src.exception import CustomException # custom exception created in exception.py
 from src.logger import logging # logger created in logger.py
-from src.components.data_transformation import datatransformatinconfig,datatransformation
+from src.components.data_transformation import datatransformation
+from src.components.model_trainer import model_trainer
 
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass # dataclass is used to create a class with attributes and methods
@@ -44,11 +46,14 @@ class dataingestion():
         
         except Exception as e:
             logging.error("error in data ingestion")
-            raise coustemexception("error in data ingestion",e,sys)
+            raise CustomException("error in data ingestion",e,sys)
         
 if __name__ == "__main__":
     obj = dataingestion()
-    train_data ,test_data = obj.read_data()
+    train_data, test_data = obj.read_data()
 
     data_transformation = datatransformation()
-    data_transformation.intiate_data_transform(train_data,test_data)
+    train_arr, test_arr, pickle_path = data_transformation.intiate_data_transform(train_data, test_data)
+
+    modeltrainer = model_trainer()
+    modeltrainer.start_model_training(train_arr, test_arr)

@@ -11,7 +11,7 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
 
-from src.exception import coustemexception
+from src.exception import CustomException
 from src.logger import logging
 from sklearn.preprocessing import OrdinalEncoder
 from src.utils import save_object
@@ -66,7 +66,7 @@ class datatransformation():
             return preporcessor
         
         except Exception as e :
-            raise coustemexception("error in feture engineering", e, sys)
+            raise CustomException("error in feture engineering", e, sys)
         
 
     # and after automation of feture engineering we will apply the feture engineering on the train and test data
@@ -86,21 +86,21 @@ class datatransformation():
 
             # we are drop unwanted columns and traget columns from the train and test data
             drop_columns = [target_columns,'id']
-            x_train = train_df.drop(columns=drop_columns, axis = 1 )
-            y_train = train_df[target_columns]#storing the target feture in ouput(dependent) feture variable 
+            x_input = train_df.drop(columns=drop_columns, axis = 1 )
+            y_input = train_df[target_columns]#storing the target feture in ouput(dependent) feture variable 
 
-            x_test = test_df.drop(columns=drop_columns, axis = 1 )
-            y_test = test_df[target_columns]#storing the target feture in ouput(dependent) feture variable 
+            x_output = test_df.drop(columns=drop_columns, axis = 1 )
+            y_output = test_df[target_columns]#storing the target feture in ouput(dependent) feture variable 
 
 
             ##apply the transformation on the train data
             logging.info("applying the transformation on the train data")
-            x_train_transformd  = preprocesing_obj.fit_transform(x_train)
-            x_test_transformed = preprocesing_obj.transform(x_test)
+            x_input_transformd  = preprocesing_obj.fit_transform(x_input)
+            x_output_transformed = preprocesing_obj.transform(x_output)
 
             # merging y_train and test to x_train_transformd and test_tranformed 
-            train_arr = np.c_[x_train_transformd, np.array(y_train)]
-            test_arr = np.c_[x_test_transformed, np.array(y_test)]
+            train_arr = np.c_[x_input_transformd, np.array(y_input)]
+            test_arr = np.c_[x_output_transformed, np.array(y_output)]
 
 
             #creating pickle file and save into the location that we are intlizing first(class datatransformatinconfig())
@@ -122,7 +122,7 @@ class datatransformation():
             
 
         except Exception as e :
-            raise coustemexception("error in data transformation", e) 
+            raise CustomException("error in data transformation", e) 
         
         
 

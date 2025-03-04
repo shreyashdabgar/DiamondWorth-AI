@@ -4,5 +4,8 @@ numpy
 scikit-learn
 seaborn
 pickle
+matplotlib
+scipy
+
 
 # -e .
