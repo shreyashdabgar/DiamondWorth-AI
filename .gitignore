@@ -174,3 +174,4 @@ cython_debug/
 "artifacts/model.pkl" 
 "artifacts/model.pkl" 
 "artifacts/*.pkl" 
+"artifacts/model.pkl" 
