@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diamond Price Prediction</title>
+</head>
+<body>
+    <h1>Diamond Price Prediction</h1>
+    <form action="/predicted" method="post">
+        <label for="carat">Carat:</label>
+        <input type="text" id="carat" name="carat" required><br>
+
+        <label for="depth">Depth:</label>
+        <input type="text" id="depth" name="depth" required><br>
+
+        <label for="table">Table:</label>
+        <input type="text" id="table" name="table" required><br>
+
+        <label for="x">X:</label>
+        <input type="text" id="x" name="x" required><br>
+
+        <label for="y">Y:</label>
+        <input type="text" id="y" name="y" required><br>
+
+        <label for="z">Z:</label>
+        <input type="text" id="z" name="z" required><br>
+
+        <label for="cut">Cut:</label>
+        <input type="text" id="cut" name="cut" required><br>
+
+        <label for="color">Color:</label>
+        <input type="text" id="color" name="color" required><br>
+
+        <label for="clarity">Clarity:</label>
+        <input type="text" id="clarity" name="clarity" required><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <h2>The price of the diamond is: {{ results }}</h2>
+</body>
+</html>
